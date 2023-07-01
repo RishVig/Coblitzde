@@ -15,7 +15,6 @@ white=(255,255,255)
 
 
 
-
 clock = pygame.time.Clock()
 pygame.display.set_caption("Fortress v.s. BETA")
 
@@ -23,7 +22,7 @@ pygame.display.set_caption("Fortress v.s. BETA")
 crashed = False
 char_1 = pygame.image.load('merv.png')
 i_vert = pygame.image.load('I-Vertical.png')
-
+o = pygame.image.load('O.png')
 def char(x,y):
     game_display.blit(char_1,(x,y))
     
@@ -35,16 +34,23 @@ x_change = 0
 y_change = 0
 
 
-obx_rand = random.uniform(0.01,0.10)
+obx_rand = random.uniform(0.01,1)
 oby_rand = random.uniform(-0.01,-0.10)
-def random(obx,oby):
+def random_ivert(obx,oby):
     game_display.blit(i_vert,(obx,oby))
 
 
 obx = (width * obx_rand)
 oby = (height * oby_rand)
 
+ 
 
+def random_o(obx,oby):
+    game_display.blit(o,(obx,oby))
+obx = (width * obx_rand)
+oby = (height * oby_rand)
+obx_rand = random.uniform(0.01,0.80)
+oby_rand = random.uniform(-0.01,-0.10)
 
 #MAIN LOOP
 while  not crashed:
@@ -80,8 +86,8 @@ while  not crashed:
     x += x_change
     y += y_change
     char(x,y)
-    random(obx,oby)
+    random_ivert(obx,oby)
+    random_o(obx,oby)
     pygame.display.update()
 
 pygame.quit()
-
