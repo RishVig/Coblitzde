@@ -1,5 +1,6 @@
 import pygame
 import random
+
 pygame.init()
 
 width = 800
@@ -7,25 +8,25 @@ height = 600
 
 # Thanks Mun
 
-game_display = pygame.display.set_mode((width,height))
+game_display = pygame.display.set_mode((width, height))
 
-black = (0,0,0)
+black = (0, 0, 0)
 
-white=(255,255,255)
-
-
+white = (255, 255, 255)
 
 clock = pygame.time.Clock()
 pygame.display.set_caption("Fortress v.s. BETA")
 
-#Charecter Bellow - Line 18 - 23
+# Charecter Bellow - Line 18 - 23
 crashed = False
-char_1 = pygame.image.load('merv.png')
+char_1 = pygame.image.load('New Merv.png')
 i_vert = pygame.image.load('I-Vertical.png')
 o = pygame.image.load('O.png')
-def char(x,y):
-    game_display.blit(char_1,(x,y))
-    
+
+
+def char(x, y):
+    game_display.blit(char_1, (x, y))
+
 
 x = (width * 0.45)
 y = (height * 0.8)
@@ -33,35 +34,35 @@ x_change = 0
 
 y_change = 0
 
+obx_rand = random.uniform(0.01, 1)
+oby_rand = random.uniform(-0.01, -0.10)
 
-obx_rand = random.uniform(0.01,1)
-oby_rand = random.uniform(-0.01,-0.10)
-def random_ivert(obx,oby):
-    game_display.blit(i_vert,(obx,oby))
+
+def random_ivert(obx, oby):
+    game_display.blit(i_vert, (obx, oby))
 
 
 obx = (width * obx_rand)
 oby = (height * oby_rand)
 
- 
 
-def random_o(obx,oby):
-    game_display.blit(o,(obx,oby))
+def random_o(obx, oby):
+    game_display.blit(o, (obx, oby))
+
+
 obx = (width * obx_rand)
 oby = (height * oby_rand)
-obx_rand = random.uniform(0.01,0.80)
-oby_rand = random.uniform(-0.01,-0.10)
+obx_rand = random.uniform(0.01, 0.80)
+oby_rand = random.uniform(-0.01, -0.10)
 
-#MAIN LOOP
-while  not crashed:
+# MAIN LOOP
+while not crashed:
     for event in pygame.event.get():
         print(event)
 
-    
         if event.type == pygame.QUIT:
-            
             crashed = True
-#Main Controls             
+    # Main Controls
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
             x_change = -0.5
@@ -79,15 +80,13 @@ while  not crashed:
         if event.key == pygame.K_UP:
             if y_change == -0.5:
                 y_change += 0.7
-                
-   
-    
-#Update and quit function below, along with final move function.
+
+    # Update and quit function below, along with final move function.
     x += x_change
     y += y_change
-    char(x,y)
-    random_ivert(obx,oby)
-    random_o(obx,oby)
+    char(x, y)
+    random_ivert(obx, oby)
+    random_o(obx, oby)
     pygame.display.update()
 
 pygame.quit()
