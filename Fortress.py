@@ -2,11 +2,11 @@ import pygame
 import random
 
 pygame.init()
-
+#This is the code directly from VSCODE
 width = 800
 height = 600
 
-# Thanks Mun
+# Thanks Mun(Sister)
 
 game_display = pygame.display.set_mode((width, height))
 
