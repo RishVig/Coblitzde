@@ -7,7 +7,6 @@ width = 800
 height = 600
 
 # Thanks Mun
-
 game_display = pygame.display.set_mode((width, height))
 
 black = (0, 0, 0)
@@ -17,13 +16,13 @@ white = (255, 255, 255)
 clock = pygame.time.Clock()
 pygame.display.set_caption("Fortress v.s. BETA")
 
-# Charecter Bellow - Line 18 - 23
+# All sprite loads
 crashed = False
-char_1 = pygame.image.load('New Merv.png')
-i_vert = pygame.image.load('I-Vertical.png')
-o = pygame.image.load('O.png')
+char_1 = pygame.image.load('New Merv-veed-remove-background (2).png')
+i_vert = pygame.image.load('I-Vertical-veed-remove-background (1).png')
+o = pygame.image.load('O-veed-remove-background (1).png')
 
-
+#Sprite functions and game_display.blit()
 def char(x, y):
     game_display.blit(char_1, (x, y))
 
@@ -46,14 +45,15 @@ obx = (width * obx_rand)
 oby = (height * oby_rand)
 
 
-def random_o(obx, oby):
-    game_display.blit(o, (obx, oby))
+def random_o(obx_2, oby_2):
+    game_display.blit(o, (obx_2, oby_2))
 
+obx_rand_2 = random.uniform(0.01, 0.80)
+oby_rand_2 = random.uniform(-0.01, -0.10)
 
-obx = (width * obx_rand)
-oby = (height * oby_rand)
-obx_rand = random.uniform(0.01, 0.80)
-oby_rand = random.uniform(-0.01, -0.10)
+obx_2 = (width * obx_rand_2)
+oby_2 = (height * oby_rand_2)
+
 
 # MAIN LOOP
 while not crashed:
@@ -86,7 +86,7 @@ while not crashed:
     y += y_change
     char(x, y)
     random_ivert(obx, oby)
-    random_o(obx, oby)
+    random_o(obx_2, oby_2)
     pygame.display.update()
 
 pygame.quit()
