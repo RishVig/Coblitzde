@@ -21,8 +21,13 @@ crashed = False
 char_1 = pygame.image.load('New Merv-veed-remove-background (2).png')
 i_vert = pygame.image.load('I-Vertical-veed-remove-background (1).png')
 o = pygame.image.load('O-veed-remove-background (1).png')
-
+easter_eggs = pygame.image.load('easter_egg_1.png')
 #Sprite functions and game_display.blit()
+def lottery():
+    
+    if loto == 18:
+        game_display.blit(easter_eggs,(0,0))
+loto = random.randint(1,100)
 def char(x, y):
     game_display.blit(char_1, (x, y))
 
@@ -84,7 +89,9 @@ while not crashed:
     # Update and quit function below, along with final move function.
     x += x_change
     y += y_change
+  
     char(x, y)
+    lottery()
     random_ivert(obx, oby)
     random_o(obx_2, oby_2)
     pygame.display.update()
