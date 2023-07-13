@@ -25,7 +25,7 @@ easter_eggs = pygame.image.load('easter_egg_1.png')
 #Sprite functions and game_display.blit()
 def lottery():
     
-    if loto == 18:
+    if loto <10:
         game_display.blit(easter_eggs,(0,0))
 loto = random.randint(1,100)
 def char(x, y):
