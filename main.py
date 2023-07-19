@@ -1,6 +1,6 @@
 import pygame
 import random
-import time
+
 pygame.init()
 
 window_width = 800
@@ -9,6 +9,7 @@ game_window = pygame.display.set_mode((window_width,window_height))
 o_block = pygame.image.load('O-veed-remove-background (1).png')
 i_block = pygame.image.load('I-Vertical-veed-remove-background (1).png')
 merv = pygame.image.load('merv_official.png')
+logo = pygame.image.load('logo.png')
 characters = [o_block,i_block]
 choice = random.choice(characters)
 random_block_x = random.randint(0,300)
@@ -24,6 +25,7 @@ class block_transfer:
         game_window.blit(choice,(self.x,self.y))
 
 
+y_change = 0
 
 def character_load(xc,yc):
     game_window.blit(merv, (xc,yc))
@@ -33,10 +35,15 @@ xc = window_width * 0.5
 yc = window_height * 0.5
 xc_change =0
 yc_change = 0
+block_load = block_transfer(random_block_x,random_block_y)
+clock = pygame.time.Clock()
 
 while not death:
     game_window.fill(black)
-    block_load = block_transfer(random_block_x,random_block_y)
+    
+    y_change += 0.1
+    block_load.y += y_change
+    block_load.blit()
     for event in pygame.event.get():
         print(event)
         if event.type == pygame.QUIT:
@@ -45,22 +52,24 @@ while not death:
             block_y -= 10
 
             if event.key == pygame.K_UP:
-                yc_change -= 0.4
+                yc_change -= 10
             if event.key == pygame.K_DOWN:
-                yc_change += 0.4
+                yc_change += 10
 
             if event.key == pygame.K_LEFT:
-                xc_change -= 0.4
+                xc_change -= 10
             if event.key == pygame.K_RIGHT:
-                xc_change += 0.4
+                xc_change += 10
         if event.type == pygame.KEYUP:
                 xc_change = 0
                 yc_change = 0
                    
            
     yc += yc_change
-    xc += xc_change
-    block_load.blit()
+    xc += xc_change    
     character_load(xc, yc)
     pygame.display.update()
+    
+    clock.tick(60)
 pygame.quit()
+#Lets Do This!!
