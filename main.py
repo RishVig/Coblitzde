@@ -16,6 +16,7 @@ random_block_x = random.randint(0,300)
 random_block_y = random.randint(0,5)
 death = False
 black = (0,0,0)
+counter = 1
 class block_transfer:
     def __init__(self,x,y):
         
@@ -23,8 +24,11 @@ class block_transfer:
         self.y = y
     def blit(self):
         game_window.blit(choice,(self.x,self.y))
-
-
+    def update(self):
+        self.y += 3
+        if self.y in range(600, 800):
+            game_window.blit(choice, (0,0))
+                       
 y_change = 0
 
 def character_load(xc,yc):
@@ -36,14 +40,15 @@ yc = window_height * 0.5
 xc_change =0
 yc_change = 0
 block_load = block_transfer(random_block_x,random_block_y)
-clock = pygame.time.Clock()
 
+clock = pygame.time.Clock()
 while not death:
     game_window.fill(black)
     
-    y_change += 0.1
-    block_load.y += y_change
+    block_load.update()
     block_load.blit()
+    
+
     for event in pygame.event.get():
         print(event)
         if event.type == pygame.QUIT:
@@ -72,4 +77,3 @@ while not death:
     
     clock.tick(60)
 pygame.quit()
-#Lets Do This!!
