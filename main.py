@@ -17,6 +17,8 @@ random_block_y = random.randint(0,5)
 death = False
 black = (0,0,0)
 counter = 1
+re_enter = random.randint(0,800)
+re_enter_y = random.randint(0,0)
 class block_transfer:
     def __init__(self,x,y):
         
@@ -25,10 +27,17 @@ class block_transfer:
     def blit(self):
         game_window.blit(choice,(self.x,self.y))
     def update(self):
-        self.y += 3
-        if self.y in range(600, 800):
-            game_window.blit(choice, (0,0))
-                       
+        if choice == i_block:
+            if self.y in range(-600, 394):
+                self.y += 3
+
+        if choice == o_block:
+            if self.y in range(-600, 539):
+                self.y += 3
+                
+    
+        
+           
 y_change = 0
 
 def character_load(xc,yc):
@@ -72,7 +81,7 @@ while not death:
            
     yc += yc_change
     xc += xc_change    
-    character_load(xc, yc)
+    character_load(xc, yc) 
     pygame.display.update()
     
     clock.tick(60)
